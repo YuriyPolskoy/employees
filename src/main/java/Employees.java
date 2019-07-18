@@ -12,6 +12,7 @@ public class Employees {
                     " join tasks as t\n" +
                     " on t.employee_id=e.id\n" +
                     " where t.finish_date > t.estimate_date and t.finish_date + INTERVAL 7 DAY > SYSDATE();");
+            System.out.println("Employees with tasks finished after deadline during last 7 days:");
             while (rs.next()) {
                 System.out.println(rs.getString(3) + " " + rs.getString(4));
             }
