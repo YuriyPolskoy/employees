@@ -8,13 +8,15 @@ public class Employees {
                 Connection conn = DriverManager.getConnection (url, "root", "123");
                 Statement st = conn.createStatement()
         ) {
-            ResultSet rs = st.executeQuery("select last_name from employee as e\n" +
+            ResultSet rs = st.executeQuery("select * from employee as e\n" +
                     " join tasks as t\n" +
                     " on t.employee_id=e.id\n" +
                     " where t.finish_date > t.estimate_date and t.finish_date + INTERVAL 7 DAY > SYSDATE();");
             while (rs.next()) {
-                System.out.println(rs.getString(1));
+                System.out.println(rs.getString(3) + " " + rs.getString(4));
             }
+
+
         }
     }
 
