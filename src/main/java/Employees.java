@@ -17,7 +17,26 @@ public class Employees {
                 System.out.println(rs.getString(3) + " " + rs.getString(4));
             }
 
+            ResultSet rst = st.executeQuery("select * from tasks as t\n" +
+                    "join office as o\n" +
+                    "join employee as e\n" +
+                    "on e.office_id = o.id and t.employee_id=e.id\n" +
+                    "where t.status_id = 2 and o.city = 'Dnipro';");
+            System.out.println("\nAmount of tasks in progress in Dnipro:");
+            int i = 0;
+            while (rst.next()) {
+                i++;
+            }
+            System.out.println(i);
 
+            ResultSet resultSet = st.executeQuery("Select * from employee as e\n" +
+                    " join office as o\n" +
+                    " on e.office_id = o.id\n" +
+                    " where o.country = 'Ukraine' and monthname(SYSDATE()) = monthname(e.birth_day);");
+            System.out.println("\nEmployees that will have birthday in this month for Ukraine:");
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString(3) + " " + resultSet.getString(4));
+            }
         }
     }
 
